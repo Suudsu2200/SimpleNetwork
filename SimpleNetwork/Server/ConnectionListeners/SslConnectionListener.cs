@@ -5,19 +5,20 @@ using System.Net.Sockets;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 using System.Threading.Tasks;
+using SimpleNetwork.Server.Connections;
 
-namespace SimpleNetwork.ConnectionListeners
+namespace SimpleNetwork.Server.ConnectionListeners
 {
     public class SslConnectionListener : IConnectionListener
     {
-        public event EventHandler<IConnectionDetails> OnNewConnection;
+        public event EventHandler<IConnection> OnNewConnection;
 
         private bool _isListening;
         private TcpListener _tcpListener;
 
-        private int _listeningPort;
-        private IPAddress _listeningIpAddress;
-        private X509Certificate _serverCertificate;
+        private readonly int _listeningPort;
+        private readonly IPAddress _listeningIpAddress;
+        private readonly X509Certificate _serverCertificate;
 
         public SslConnectionListener(IPAddress listeningIpAddress, int listeningPort, X509Certificate serverCertificate) 
         {
@@ -48,7 +49,7 @@ namespace SimpleNetwork.ConnectionListeners
                         TcpClient client = _tcpListener.AcceptTcpClient();
                         SslStream sslStream = new SslStream(client.GetStream());
                         sslStream.AuthenticateAsServer(_serverCertificate);
-                        OnNewConnection(null, new ConnectionDetails {UnderlyingStream = sslStream});
+                        OnNewConnection(null, new Connection {UnderlyingStream = sslStream});
                     }
                     Thread.Sleep(250);                    
                 }

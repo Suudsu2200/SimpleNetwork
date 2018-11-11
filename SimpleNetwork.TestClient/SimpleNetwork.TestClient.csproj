@@ -4,15 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B2315F3D-450E-4CD1-BCEF-0AC23EA84782}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{1AF9C874-EB56-452F-AEE0-28348C9BC265}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SimpleNetwork</RootNamespace>
-    <AssemblyName>SimpleNetwork</AssemblyName>
+    <RootNamespace>SimpleNetwork.TestClient</RootNamespace>
+    <AssemblyName>SimpleNetwork.TestClient</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +24,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -30,10 +33,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -44,25 +43,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Client\SimpleClient.cs" />
-    <Compile Include="Server\ConnectionListeners\IConnectionListener.cs" />
-    <Compile Include="Server\ConnectionListeners\SslConnectionListener.cs" />
-    <Compile Include="Server\Connections\Connection.cs" />
-    <Compile Include="Server\Connections\IConnection.cs" />
-    <Compile Include="Server\RequestHandlers\IRequestHandler.cs" />
-    <Compile Include="Server\RequestHandlers\RequestHandler.cs" />
-    <Compile Include="Server\RequestMappers\HandlerMethodWrapper.cs" />
-    <Compile Include="Server\RequestMappers\IRequestMapper.cs" />
-    <Compile Include="Server\RequestMappers\RequestMapper.cs" />
-    <Compile Include="Requests\IRequest.cs" />
-    <Compile Include="Requests\Request.cs" />
-    <Compile Include="Server\SimpleServer.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StreamReaders\StreamReader.cs" />
-    <Compile Include="StreamReaders\JsonStreamReader.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SimpleNetwork\SimpleNetwork.csproj">
+      <Project>{b2315f3d-450e-4cd1-bcef-0ac23ea84782}</Project>
+      <Name>SimpleNetwork</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
