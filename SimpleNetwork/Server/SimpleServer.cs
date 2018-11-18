@@ -21,6 +21,7 @@ namespace SimpleNetwork.Server
             _connectionListener = connectionListener;
             _activeConnections = new Dictionary<int, IConnection>();
             _requestMapper = new RequestMapper();
+            _streamReader = new Simple.JsonStreamReader();
         }
 
         public void Start()
