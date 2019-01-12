@@ -5,15 +5,15 @@ using SimpleNetwork.Requests;
 namespace SimpleNetwork.StreamReaders
 { 
 
-    public class JsonStreamReader : StreamReader
+   /* public class JsonStreamReader : StreamReader
     {
-        private readonly JsonSerializer _serializer;
+        /*private readonly JsonSerializer _serializer;
         public JsonStreamReader()
         {
             _serializer = new JsonSerializer();
         }
 
-        public override IRequest Read(Stream stream)
+        public override Request Read(Stream stream)
         {
             using (System.IO.StreamReader streamReader = new System.IO.StreamReader(stream))
             using (JsonTextReader jsonTextReader = new JsonTextReader(streamReader))
@@ -21,5 +21,5 @@ namespace SimpleNetwork.StreamReaders
                 return new Request() {Body = _serializer.Deserialize(jsonTextReader)};
             }
         }
-    }
+    }*/
 }

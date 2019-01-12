@@ -1,9 +1,11 @@
-﻿using System.Net.Security;
+﻿using System.IO;
+using System.Net.Security;
 
 namespace SimpleNetwork.Server.Connections
 {
     public interface IConnection
     {
-        AuthenticatedStream UnderlyingStream { get; }
+        Stream UnderlyingStream { get; }
+
     }
 }

@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApplication1
+namespace SimpleNetwork.Requests
 {
-    class Program
+    [Route("abcd")]
+    public class TestRequest
     {
-        static void Main(string[] args)
-        {
-        }
+        public string Testparam = "param";
     }
 }

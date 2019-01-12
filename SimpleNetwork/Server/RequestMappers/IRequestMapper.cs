@@ -4,6 +4,6 @@ namespace SimpleNetwork.Server.RequestMappers
 {
     public interface IRequestMapper
     {
-        HandlerMethodWrapper MapRequest(IRequest request);
+        HandlerMethodWrapper MapRequest(object request);
     }
 }

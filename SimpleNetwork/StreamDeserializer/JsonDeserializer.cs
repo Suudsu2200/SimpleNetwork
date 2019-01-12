@@ -4,11 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SimpleNetwork.Requests
+namespace SimpleNetwork.StreamDeserializer
 {
-    public interface IRequest
+    public class JsonDeserializer
     {
-        Type RequestType { get; set; }
-        object Body { get; set; }
     }
 }

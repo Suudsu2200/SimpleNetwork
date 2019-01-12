@@ -6,9 +6,12 @@ using System.Threading.Tasks;
 
 namespace SimpleNetwork.Requests
 {
-    public class Request : IRequest
+    public class Request
     {
-        public Type RequestType { get; set; }
-        public object Body { get; set; }
+        public object Body { get; private set; }
+        public Request(object body)
+        {
+            Body = body;
+        }
     }
 }

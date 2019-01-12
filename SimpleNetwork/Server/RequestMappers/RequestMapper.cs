@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
+using System.Threading;
 using SimpleNetwork.Requests;
 using SimpleNetwork.Server.RequestHandlers;
 
@@ -9,11 +11,11 @@ namespace SimpleNetwork.Server.RequestMappers
 {
     public class RequestMapper : IRequestMapper
     {
-        private readonly Dictionary<Type, HandlerMethodWrapper> _requestTypeToHandlerMap;
+        private readonly Dictionary<string, HandlerMethodWrapper> _requestTypeToHandlerMap;
 
         public RequestMapper()
         {
-            _requestTypeToHandlerMap = new Dictionary<Type, HandlerMethodWrapper>();
+            _requestTypeToHandlerMap = new Dictionary<string, HandlerMethodWrapper>();
             foreach (Assembly assembly in new Assembly[] {Assembly.GetEntryAssembly()})
             {
                 foreach (
@@ -26,7 +28,7 @@ namespace SimpleNetwork.Server.RequestMappers
                         ParameterInfo[] parameters = methodInfo.GetParameters();
                         if (parameters.Length != 1)
                             continue;
-                        _requestTypeToHandlerMap.Add(parameters[0].ParameterType,
+                        _requestTypeToHandlerMap.Add( ((Route) parameters[0].GetCustomAttributes(typeof(Route), true)[0]).RoutePath,
                             new HandlerMethodWrapper
                             {
                                 Actor = handler,
@@ -37,9 +39,10 @@ namespace SimpleNetwork.Server.RequestMappers
             }
         }
 
-        public HandlerMethodWrapper MapRequest(IRequest request)
+        public HandlerMethodWrapper MapRequest(object request)
         {
-            return _requestTypeToHandlerMap[request.RequestType];
+            Console.WriteLine("Mapping...");
+            return null; // _requestTypeToHandlerMap[request.Route.RoutePath];
         }
     }
 }

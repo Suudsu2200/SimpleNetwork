@@ -3,6 +3,8 @@ using System.Net.Security;
 using System.Net.Sockets;
 using System.Text;
 using Newtonsoft.Json;
+using SimpleNetwork.Protocol;
+using SimpleNetwork.Requests;
 
 namespace SimpleNetwork.Client
 {
@@ -23,7 +25,14 @@ namespace SimpleNetwork.Client
 
         public void Request(object request)
         {
-            new JsonSerializer().Serialize(new JsonTextWriter(new StringWriter(new StringBuilder())), request);
+            //  _stream.Write(new JsonSerializer().Serialize(new JsonTextWriter(new StringWriter(new StringBuilder())), "hello!"));
+            /*JsonSerializer serializer = new JsonSerializer();
+            using (StreamWriter sw = new StreamWriter(_stream))
+            using (JsonWriter writer = new JsonTextWriter(sw))
+            {
+                serializer.Serialize(writer, "hello!");
+            }*/
+            new JsonSerializationProcotol().Serialize(_stream, new TestRequest());
         }
 
     }
